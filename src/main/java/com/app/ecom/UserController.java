@@ -1,6 +1,8 @@
 package com.app.ecom;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +14,10 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/api/users")
-    public List<User> getAllUsers() {
-        return userService.fetchAllUsers();
+    public ResponseEntity<List<User>> getAllUsers() {
+        return new ResponseEntity<>(userService.fetchAllUsers(),
+                HttpStatus.OK);
+        // return ResponseEntity.ok(userService.fetchAllUsers());
     }
 
     @GetMapping("/api/users/{id}")
