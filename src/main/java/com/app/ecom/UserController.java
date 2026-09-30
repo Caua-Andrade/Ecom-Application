@@ -18,7 +18,6 @@ public class UserController {
         return new ResponseEntity<>(userService.fetchAllUsers(),
                 HttpStatus.OK);
         // return ResponseEntity.ok(userService.fetchAllUsers());
-        //t
     }
 
     @GetMapping("/api/users/{id}")
