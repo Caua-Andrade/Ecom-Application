@@ -27,11 +27,18 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-
-
     @PostMapping("/api/users")
     public ResponseEntity<String> createUser(@RequestBody User user) {
         userService.addUser(user);
         return ResponseEntity.ok("User Added successfully");
+    }
+
+    @PutMapping("/api/users/{id}")
+    public ResponseEntity<String> updateUser(@PathVariable Long id,
+                                             @RequestBody User updateUser) {
+        boolean updated = userService.updateUser(id, updateUser);
+        if (updated)
+            return ResponseEntity.ok("User updated successfully");
+        return ResponseEntity.notFound().build();
     }
 }
