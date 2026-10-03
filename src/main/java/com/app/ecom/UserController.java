@@ -27,10 +27,7 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/api/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @ResponseBody User user) {
 
-    }
 
     @PostMapping("/api/users")
     public ResponseEntity<String> createUser(@RequestBody User user) {
