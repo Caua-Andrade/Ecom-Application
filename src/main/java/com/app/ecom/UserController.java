@@ -44,3 +44,6 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 }
+// Presentation Layer -> Where all controller classes exist
+// Service Layer -> business logic (decision and processing of data)
+// Data Access Layer -> where all the repository classes reside
