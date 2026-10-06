@@ -9,10 +9,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 //@AllArgsConstructor
-//@Entity(name = "user_table")
 @Data
 @NoArgsConstructor
-@Entity
+//@Entity
+@Entity(name = "user_table")
 public class User {
 
     @Id
