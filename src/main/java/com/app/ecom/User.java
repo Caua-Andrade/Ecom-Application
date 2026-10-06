@@ -4,10 +4,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+//@AllArgsConstructor
+//@Entity(name = "user_table")
 @Data
-@Entity(name = "user_table")
+@NoArgsConstructor
+@Entity
 public class User {
 
     @Id
@@ -15,13 +20,4 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
-
-    public User() {
-    }
-
-    public User(Long id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 }
