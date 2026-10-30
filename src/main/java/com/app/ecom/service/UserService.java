@@ -1,5 +1,7 @@
 package com.app.ecom.service;
 
+import com.app.ecom.dto.AddressDTO;
+import com.app.ecom.dto.UserResponse;
 import com.app.ecom.model.User;
 import com.app.ecom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +18,7 @@ public class UserService {
     //private List<User> userList = new ArrayList<>();
 //    private Long nextId = 1L;
 
-    public List<User> fetchAllUsers() {
+    public List<UserResponse> fetchAllUsers() {
         return userRepository.findAll();
     }
 
@@ -37,5 +39,26 @@ public class UserService {
                    userRepository.save(existingUser);
                    return true;
                }).orElse(false);
+    }
+
+    private UserResponse mapToUserResponse(User user) {
+        UserResponse response = new UserResponse();
+        response.setId(String.valueOf(user.getId()));
+        response.setFirstName(user.getFirstName());
+        response.setLastName(user.getLastName());
+        response.setEmail(user.getEmail());
+        response.setPhone(user.getPhone());
+        response.setRole(user.getRole());
+
+        if (user.getAddress() != null) {
+            AddressDTO addressDTO = new AddressDTO();
+            addressDTO.setStreet(user.getAddress().getStreet());
+            addressDTO.setCity(user.getAddress().getCity());
+            addressDTO.setState(user.getAddress().getState());
+            addressDTO.setCountry(user.getAddress().getCountry());
+            addressDTO.setZipcode(user.getAddress().getZipcode());
+            response.setAddress(addressDTO);
+        }
+        return response;
     }
 }
