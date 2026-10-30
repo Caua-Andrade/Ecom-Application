@@ -10,5 +10,5 @@ public class UserResponse {
     private String email;
     private String phone;
     private UserRole role;
-    private AddressDto address;
+    private AddressDTO address;
 }
