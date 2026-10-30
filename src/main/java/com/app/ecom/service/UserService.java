@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +20,9 @@ public class UserService {
 //    private Long nextId = 1L;
 
     public List<UserResponse> fetchAllUsers() {
-        return userRepository.findAll();
+        return userRepository.findAll().stream()
+                .map(this::mapToUserResponse)
+                .collect(Collectors.toList());
     }
 
     public void addUser(User user) {
