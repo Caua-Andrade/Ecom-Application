@@ -30,8 +30,9 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Optional<User> fetchUser(Long id) {
-        return userRepository.findById(id);
+    public Optional<UserResponse> fetchUser(Long id) {
+        return userRepository.findById(id)
+                .map(this::mapToUserResponse);
     }
 
     public boolean updateUser(Long id, User updateUser) {
