@@ -1,6 +1,7 @@
 package com.app.ecom.service;
 
 import com.app.ecom.dto.AddressDTO;
+import com.app.ecom.dto.UserRequest;
 import com.app.ecom.dto.UserResponse;
 import com.app.ecom.model.User;
 import com.app.ecom.repository.UserRepository;
@@ -25,10 +26,13 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public void addUser(User user) {
+    public void addUser(UserRequest userRequest) {
         // user.setId(nextId++); ID is auto generated
+        User user = new User();
+        updateUserFromRequest(user, userRequest);
         userRepository.save(user);
     }
+
 
     public Optional<UserResponse> fetchUser(Long id) {
         return userRepository.findById(id)
@@ -43,6 +47,13 @@ public class UserService {
                    userRepository.save(existingUser);
                    return true;
                }).orElse(false);
+    }
+
+    private void updateUserFromRequest(User user, UserRequest userRequest) {
+        user.setFirstName(userRequest.getFirstName());
+        user.setLastName(userRequest.getLastName());
+        user.setEmail(userRequest.getEmail());
+        user.setPhone(user.getPhone());
     }
 
     private UserResponse mapToUserResponse(User user) {
