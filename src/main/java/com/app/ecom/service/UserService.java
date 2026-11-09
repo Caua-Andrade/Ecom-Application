@@ -40,11 +40,10 @@ public class UserService {
                 .map(this::mapToUserResponse);
     }
 
-    public boolean updateUser(Long id, User updateUser) {
+    public boolean updateUser(Long id, UserRequest updateUserRequest) {
        return userRepository.findById(id)
                .map(existingUser -> {
-                   existingUser.setFirstName(updateUser.getFirstName());
-                   existingUser.setLastName(updateUser.getLastName());
+                   updateUserFromRequest(existingUser, updateUserRequest);
                    userRepository.save(existingUser);
                    return true;
                }).orElse(false);
