@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequiredArgsConstructor
+@RequiredArgsConstructor // It can be used only in final tipes
 public class ProductController {
 
     private final ProductService productService;
