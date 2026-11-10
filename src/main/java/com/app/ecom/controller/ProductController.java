@@ -1,5 +1,6 @@
 package com.app.ecom.controller;
 
+import com.app.ecom.dto.ProductRequest;
 import com.app.ecom.dto.ProductResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
